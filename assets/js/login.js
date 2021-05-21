@@ -36,11 +36,23 @@ $(function () {
         var data = $(this).serialize()
         $.post('/api/login', data, function (res) {
             if (res.status !== 0) {
-                return layer.msg('登陆失败！');
+                return layer.open({
+                    content: '账户名或密码输入错误，请重新输入！',
+                    end: function () {
+                        $('.layui-input').val('')
+                    }
+                })
+                // layer.msg('账户名或密码输入错误，请重新输入')
             }
-            layer.msg('登陆成功！')
-            localStorage.setItem('token', res.token)
-            location.href = '/index.html'
+            layer.open({
+                content: '登陆成功！',
+                end: function () {
+                    localStorage.setItem('token', res.token)
+                    location.href = '/index.html'
+                }
+            })
         })
+
     })
+
 })

@@ -20,10 +20,14 @@ $(function () {
             url: '/my/updatepwd',
             data: data,
             success: function (res) {
-                layer.msg('密码修改成功成功')
-                window.parent.location.href = '/login.html'
+                localStorage.removeItem('token')
+                layer.open({
+                    content: '密码修改成功成功，点击确定重新登陆',
+                    end: function () {
+                        window.parent.location.href = '/login.html'
+                    }
+                })
             }
         })
     })
-
 })
