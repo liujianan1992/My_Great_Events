@@ -7,6 +7,7 @@ $(function () {
         }, function (index) {
             location.href = "/login.html"
             localStorage.removeItem('token')
+            localStorage.removeItem('userInfo')
             layer.close(index);
         });
     })
@@ -18,6 +19,8 @@ function getUserInfo() {
         url: '/my/userinfo',
         success: function (res) {
             if (res.status === 0) {
+                console.log(res);
+                localStorage.setItem('userInfo', JSON.stringify(res.data))
                 loadAvatar(res.data)
             }
         }

@@ -11,16 +11,18 @@ $(function () {
     initUserInfo()
 
     function initUserInfo() {
-        $.ajax({
-            method: 'GET',
-            url: '/my/userinfo',
-            success: function (res) {
-                if (res.status !== 0) {
-                    return layer.msg('获取用户信息失败！')
-                }
-                form.val('formUserInfo', res.data)
-            }
-        })
+        var data = JSON.parse(localStorage.getItem('userInfo'))
+        return data && form.val('formUserInfo', data)
+        // $.ajax({
+        //     method: 'GET',
+        //     url: '/my/userinfo',
+        //     success: function (res) {
+        //         if (res.status !== 0) {
+        //             return layer.msg('获取用户信息失败！')
+        //         }
+        //         form.val('formUserInfo', res.data)
+        //     }
+        // })
     }
     $('#btnReset').on('click', function (e) {
         e.preventDefault()

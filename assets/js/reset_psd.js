@@ -24,6 +24,8 @@ $(function () {
                 layer.open({
                     content: '密码修改成功成功，点击确定重新登陆',
                     end: function () {
+                        localStorage.removeItem('token')
+                        localStorage.removeItem('userInfo')
                         window.parent.location.href = '/login.html'
                     }
                 })
